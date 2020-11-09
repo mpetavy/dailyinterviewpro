@@ -42,3 +42,7 @@ func TestRange(t *testing.T) {
 	assert.EqualValues(t, IntsToString([]int{1, 2}), IntsToString(Range([]int{100, 150, 150, 153}, 150)))
 	assert.EqualValues(t, IntsToString([]int{-1, -1}), IntsToString(Range([]int{1, 2, 3, 4, 5, 6, 10}, 9)))
 }
+
+func TestFindPythagoreanTriplets(t *testing.T) {
+	assert.EqualValues(t, []int{12, 5, 13}, FindPythagoreanTriplets([]int{3, 12, 5, 13}))
+}

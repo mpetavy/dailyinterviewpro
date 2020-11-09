@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 //Hi, here's your problem today. This problem was recently asked by Microsoft:
@@ -166,6 +167,26 @@ func Range(arr []int, b int) []int {
 	}
 
 	return []int{left, right}
+}
+
+func FindPythagoreanTriplets(v []int) []int {
+	for i := 0; i < len(v); i++ {
+		for k := 0; k < len(v); k++ {
+			if k == i {
+				continue
+			}
+			for l := 0; l < len(v); l++ {
+				if l == i || l == k {
+					continue
+				}
+				if math.Pow(float64(v[i]), 2)+math.Pow(float64(v[k]), 2) == math.Pow(float64(v[l]), 2) {
+					return []int{v[i], v[k], v[l]}
+				}
+			}
+		}
+	}
+
+	return []int{}
 }
 
 func main() {
