@@ -46,3 +46,11 @@ func TestRange(t *testing.T) {
 func TestFindPythagoreanTriplets(t *testing.T) {
 	assert.EqualValues(t, []int{12, 5, 13}, FindPythagoreanTriplets([]int{3, 12, 5, 13}))
 }
+
+func TestDistance(t *testing.T) {
+	assert.EqualValues(t, 0, Distance("otto", "otto"))
+	assert.EqualValues(t, 1, Distance("abc", "abx"))
+	assert.EqualValues(t, 1, Distance("abc", "xbc"))
+	assert.EqualValues(t, 2, Distance("sitting", "biting"))
+	assert.EqualValues(t, 3, Distance("abc", "123"))
+}

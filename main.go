@@ -189,6 +189,47 @@ func FindPythagoreanTriplets(v []int) []int {
 	return []int{}
 }
 
+func Distance(w0 string, w1 string) int {
+	// sitting
+	// biting
+
+	r0 := []rune(w0)
+	r1 := []rune(w1)
+	d := 0
+
+	for i := 0; i < len(r0); i++ {
+		if len(r0) < len(r1) {
+			r0, r1 = r1, r0
+		}
+
+		// Same charcter ? -> continue
+		if r0[i] == r1[i] {
+			continue
+		}
+
+		// Starting here we know that the character is unqual
+
+		// if we are already at the end of all ...
+		if i+1 == len(r0) {
+			d++
+			continue
+		}
+
+		// can we het rid of the current character because the next one is equal ...
+		if (i+1 < len(r0)) && (r0[i+1] == r1[i]) {
+			r0 = append(r0[:i], r0[i+1:]...)
+			w0 = string(r0)
+
+			d++
+			continue
+		}
+
+		d++
+	}
+
+	return d
+}
+
 func main() {
 	fmt.Printf("run the test, not the main")
 }
