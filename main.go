@@ -202,26 +202,38 @@ func Distance(w0 string, w1 string) int {
 			r0, r1 = r1, r0
 		}
 
-		// Same charcter ? -> continue
-		if r0[i] == r1[i] {
+		w0 = string(r0)
+		w1 = string(r1)
+
+		var c0, c1, n0, n1 string
+
+		n1 = n1
+
+		if i < len(r0) {
+			c0 = string(r0[i])
+		}
+		if i < len(r1) {
+			c1 = string(r1[i])
+		}
+
+		if c0 == c1 {
 			continue
 		}
 
-		// Starting here we know that the character is unqual
-
-		// if we are already at the end of all ...
-		if i+1 == len(r0) {
-			d++
-			continue
+		if i+1 < len(r0) {
+			n0 = string(r0[i+1])
+		}
+		if i+1 < len(r1) {
+			n1 = string(r1[i+1])
 		}
 
-		// can we het rid of the current character because the next one is equal ...
-		if (i+1 < len(r0)) && (r0[i+1] == r1[i]) {
-			r0 = append(r0[:i], r0[i+1:]...)
-			w0 = string(r0)
+		if len(r0) > len(r1) {
+			if n0 == c1 {
+				r1 = append(append(r1[:0], r0[:1]...), r1[1:]...)
 
-			d++
-			continue
+				d++
+				continue
+			}
 		}
 
 		d++

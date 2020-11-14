@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -48,9 +49,31 @@ func TestFindPythagoreanTriplets(t *testing.T) {
 }
 
 func TestDistance(t *testing.T) {
-	assert.EqualValues(t, 0, Distance("otto", "otto"))
-	assert.EqualValues(t, 1, Distance("abc", "abx"))
-	assert.EqualValues(t, 1, Distance("abc", "xbc"))
-	assert.EqualValues(t, 2, Distance("sitting", "biting"))
-	assert.EqualValues(t, 3, Distance("abc", "123"))
+	tests := []struct {
+		a, b string
+		want int
+	}{
+		//{"otto", "otto", 0},
+		//{"abc", "abx", 1},
+		//{"abc", "xbc", 1},
+		//{"sitting", "biting", 2},
+		//{"abc", "123", 3},
+		//{"a", "", 1},
+		//{"ab", "", 2},
+		//{"", "hello", 5},
+		//{"hello", "", 5},
+		//{"hello", "hello", 0},
+		//{"ab", "aa", 1},
+		//{"ab", "ba", 2},
+		//{"ab", "aaa", 2},
+		//{"bbb", "a", 3},
+		//{"kitten", "sitting", 3},
+		{"distance", "difference", 5},
+		{"levenshtein", "frankenstein", 6},
+		{"resume and cafe", "resumes and cafes", 2},
+	}
+	for _, d := range tests {
+		fmt.Printf("%+v\n", d)
+		assert.Equal(t, d.want, Distance(d.a, d.b))
+	}
 }
