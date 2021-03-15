@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"github.com/stretchr/testify/assert"
+	"strings"
 	"testing"
 )
 
@@ -48,6 +48,7 @@ func TestFindPythagoreanTriplets(t *testing.T) {
 	assert.EqualValues(t, []int{12, 5, 13}, FindPythagoreanTriplets([]int{3, 12, 5, 13}))
 }
 
+/*
 func TestDistance(t *testing.T) {
 	tests := []struct {
 		a, b string
@@ -76,4 +77,30 @@ func TestDistance(t *testing.T) {
 		fmt.Printf("%+v\n", d)
 		assert.Equal(t, d.want, Distance(d.a, d.b))
 	}
+}
+*/
+
+func RndString(len int) string {
+	s := strings.Builder{}
+	for i := 0; i < len; i++ {
+		s.WriteByte(97 + byte(Rnd(26)))
+	}
+
+	return s.String()
+}
+
+func TestFindSubstring(t *testing.T) {
+	assert.Equal(t, "zyx", FindSubstring("xyyzyzyx", "xyz"))
+
+	search := RndString(30)
+	input := RndString(470) + search
+
+	assert.Equal(t, search, FindSubstring(input, search))
+}
+
+func BenchmarkFindSubstring(b *testing.B) {
+	search := RndString(30)
+	input := RndString(470) + search
+
+	FindSubstring(input, search)
 }

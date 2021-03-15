@@ -1,8 +1,11 @@
 package main
 
 import (
+	"bytes"
+	"crypto/rand"
 	"fmt"
 	"math"
+	"math/big"
 )
 
 //Hi, here's your problem today. This problem was recently asked by Microsoft:
@@ -240,6 +243,45 @@ func Distance(w0 string, w1 string) int {
 	}
 
 	return d
+}
+
+func hash(s string) []byte {
+	h := make([]byte, 26)
+
+	a_ord := []byte("a")[0]
+	for _, b := range []byte(s) {
+		key := b - a_ord
+		h[key] = h[key] + 1
+	}
+
+	return h
+}
+
+func Rnd(max int) int {
+	nBig, err := rand.Int(rand.Reader, big.NewInt(int64(max)))
+	if err != nil {
+		panic(err)
+	}
+
+	return int(nBig.Int64())
+}
+
+func FindSubstring(input string, search string) string {
+	if len(search) > len(input) {
+		return ""
+	}
+
+	searchHash := hash(search)
+
+	for i := 0; i <= (len(input) - len(search)); i++ {
+		substring := input[i : i+len(search)]
+		currentHash := hash(substring)
+		if bytes.Equal(searchHash, currentHash) {
+			return substring
+		}
+	}
+
+	return ""
 }
 
 func main() {
