@@ -1,4 +1,4 @@
-module dailyinterviewpro
+module github.com/mpetavy/dailyinterviewpro
 
 go 1.21
 
