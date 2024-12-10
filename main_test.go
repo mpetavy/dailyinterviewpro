@@ -1,51 +1,51 @@
 package main
 
 import (
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	"strings"
 	"testing"
 )
 
 func TestLengthOfLongestSubstring5(t *testing.T) {
-	assert.Equal(t, 10, lengthOfLongestSubstring("abrkaabcdefghijjxxx"))
+	require.Equal(t, 10, lengthOfLongestSubstring("abrkaabcdefghijjxxx"))
 }
 
 func TestLongestPalindrome(t *testing.T) {
-	assert.Equal(t, "a", longestPalindrome("a"))
-	assert.Equal(t, "aa", longestPalindrome("aa"))
-	assert.Equal(t, "anana", longestPalindrome("banana"))
-	assert.Equal(t, "illi", longestPalindrome("million"))
+	require.Equal(t, "a", longestPalindrome("a"))
+	require.Equal(t, "aa", longestPalindrome("aa"))
+	require.Equal(t, "anana", longestPalindrome("banana"))
+	require.Equal(t, "illi", longestPalindrome("million"))
 }
 
 func TestIsValidParentheses(t *testing.T) {
-	assert.True(t, isValidParentheses(""))
-	assert.False(t, isValidParentheses("}"))
-	assert.False(t, isValidParentheses("(}"))
-	assert.True(t, isValidParentheses("()"))
-	assert.True(t, isValidParentheses("((()))"))
-	assert.True(t, isValidParentheses("[()]{}"))
-	assert.False(t, isValidParentheses("({[)]"))
+	require.True(t, isValidParentheses(""))
+	require.False(t, isValidParentheses("}"))
+	require.False(t, isValidParentheses("(}"))
+	require.True(t, isValidParentheses("()"))
+	require.True(t, isValidParentheses("((()))"))
+	require.True(t, isValidParentheses("[()]{}"))
+	require.False(t, isValidParentheses("({[)]"))
 }
 
 func TestBinarySearch(t *testing.T) {
-	assert.Equal(t, -1, BinarySearch([]int{}, 0))
-	assert.Equal(t, 0, BinarySearch([]int{0}, 0))
-	assert.Equal(t, -1, BinarySearch([]int{1}, 0))
-	assert.Equal(t, 0, BinarySearch([]int{0, 1}, 0))
-	assert.Equal(t, 1, BinarySearch([]int{0, 1}, 1))
-	assert.Equal(t, 2, BinarySearch([]int{0, 1, 2}, 2))
-	assert.Equal(t, -1, BinarySearch([]int{0, 1, 2}, 3))
-	assert.Equal(t, -1, BinarySearch([]int{0, 1, 3}, 2))
+	require.Equal(t, -1, BinarySearch([]int{}, 0))
+	require.Equal(t, 0, BinarySearch([]int{0}, 0))
+	require.Equal(t, -1, BinarySearch([]int{1}, 0))
+	require.Equal(t, 0, BinarySearch([]int{0, 1}, 0))
+	require.Equal(t, 1, BinarySearch([]int{0, 1}, 1))
+	require.Equal(t, 2, BinarySearch([]int{0, 1, 2}, 2))
+	require.Equal(t, -1, BinarySearch([]int{0, 1, 2}, 3))
+	require.Equal(t, -1, BinarySearch([]int{0, 1, 3}, 2))
 }
 
 func TestRange(t *testing.T) {
-	assert.EqualValues(t, IntsToString([]int{6, 8}), IntsToString(Range([]int{1, 3, 3, 5, 7, 8, 9, 9, 9, 15}, 9)))
-	assert.EqualValues(t, IntsToString([]int{1, 2}), IntsToString(Range([]int{100, 150, 150, 153}, 150)))
-	assert.EqualValues(t, IntsToString([]int{-1, -1}), IntsToString(Range([]int{1, 2, 3, 4, 5, 6, 10}, 9)))
+	require.EqualValues(t, IntsToString([]int{6, 8}), IntsToString(Range([]int{1, 3, 3, 5, 7, 8, 9, 9, 9, 15}, 9)))
+	require.EqualValues(t, IntsToString([]int{1, 2}), IntsToString(Range([]int{100, 150, 150, 153}, 150)))
+	require.EqualValues(t, IntsToString([]int{-1, -1}), IntsToString(Range([]int{1, 2, 3, 4, 5, 6, 10}, 9)))
 }
 
 func TestFindPythagoreanTriplets(t *testing.T) {
-	assert.EqualValues(t, []int{12, 5, 13}, FindPythagoreanTriplets([]int{3, 12, 5, 13}))
+	require.EqualValues(t, []int{12, 5, 13}, FindPythagoreanTriplets([]int{3, 12, 5, 13}))
 }
 
 /*
@@ -75,7 +75,7 @@ func TestDistance(t *testing.T) {
 	}
 	for _, d := range tests {
 		fmt.Printf("%+v\n", d)
-		assert.Equal(t, d.want, Distance(d.a, d.b))
+		require.Equal(t, d.want, Distance(d.a, d.b))
 	}
 }
 */
@@ -90,12 +90,12 @@ func RndString(len int) string {
 }
 
 func TestFindSubstring(t *testing.T) {
-	assert.Equal(t, "zyx", FindSubstring("xyyzyzyx", "xyz"))
+	require.Equal(t, "zyx", FindSubstring("xyyzyzyx", "xyz"))
 
 	search := RndString(30)
 	input := RndString(470) + search
 
-	assert.Equal(t, search, FindSubstring(input, search))
+	require.Equal(t, search, FindSubstring(input, search))
 }
 
 func BenchmarkFindSubstring(b *testing.B) {
